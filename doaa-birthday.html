@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعاء ❀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Marcellus&family=Tajawal:wght@300;400;500;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --blush-mist:#FFF6F8;
+    --soft-pink:#FFD9E2;
+    --dusty-rose:#E89AAE;
+    --rose:#C2185B;
+    --deep-red:#9B2235;
+    --ink:#5a2230;
+    --gold:#D8A657;
+    --shadow-rose: rgba(194,24,91,0.18);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,217,226,0.55), transparent 45%),
+      radial-gradient(circle at 85% 30%, rgba(232,154,174,0.35), transparent 40%),
+      linear-gradient(180deg, var(--white) 0%, var(--blush-mist) 100%);
+    font-family:'Tajawal', sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===== floating petals ambience ===== */
+  .petal{
+    position:fixed;
+    top:-5vh;
+    pointer-events:none;
+    z-index:1;
+    opacity:0.75;
+    will-change:transform;
+    animation:fall linear infinite;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) translateX(var(--drift,30px)) rotate(360deg); }
+  }
+
+  /* ===== section base ===== */
+  .screen{
+    min-height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:6vh 6vw;
+    text-align:center;
+  }
+
+  .ornament-line{
+    width:1px;
+    height:48px;
+    background:linear-gradient(to bottom, transparent, var(--dusty-rose));
+    margin:0 auto 22px;
+  }
+  .ornament-line.bottom{
+    background:linear-gradient(to top, transparent, var(--dusty-rose));
+    margin:22px auto 0;
+  }
+
+  .diamond{
+    width:9px;height:9px;
+    background:var(--rose);
+    transform:rotate(45deg);
+    margin:18px auto;
+    box-shadow:0 0 12px var(--shadow-rose);
+  }
+
+  /* ===== SCREEN 1 : welcome / birthday wish ===== */
+  #screen-1{
+    position:relative;
+    padding-top:calc(6vh + 46px);
+  }
+  .eyebrow{
+    font-family:'Tajawal', sans-serif;
+    letter-spacing:0.35em;
+    font-size:0.72rem;
+    color:var(--rose);
+    text-transform:uppercase;
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .name-display{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(2.4rem, 7vw, 4.2rem);
+    color:var(--deep-red);
+    font-weight:700;
+    line-height:1.3;
+    text-shadow:0 2px 24px var(--shadow-rose);
+  }
+  .english-wish{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(1.3rem, 3.4vw, 2rem);
+    color:var(--rose);
+    margin-top:18px;
+    letter-spacing:0.02em;
+    direction:ltr;
+  }
+  .english-wish .big{
+    display:block;
+    font-style:normal;
+    font-weight:600;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    color:var(--deep-red);
+    margin-top:6px;
+    letter-spacing:0.04em;
+  }
+
+  .next-btn{
+    margin-top:54px;
+    background:transparent;
+    border:1.5px solid var(--rose);
+    color:var(--deep-red);
+    font-family:'Tajawal', sans-serif;
+    font-size:0.95rem;
+    letter-spacing:0.18em;
+    padding:14px 46px;
+    border-radius:40px;
+    cursor:pointer;
+    position:relative;
+    transition:all .45s ease;
+    overflow:hidden;
+    z-index:2;
+  }
+  .next-btn::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg, var(--soft-pink), var(--rose));
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform .45s ease;
+    z-index:-1;
+  }
+  .next-btn:hover::before{ transform:scaleX(1); }
+  .next-btn:hover{ color:var(--white); box-shadow:0 8px 30px var(--shadow-rose); }
+  .next-btn:focus-visible{ outline:2px solid var(--deep-red); outline-offset:4px; }
+
+  /* ===== fireworks canvas screen ===== */
+  #screen-2{
+    background:radial-gradient(circle at 50% 30%, rgba(20,4,10,0.04), transparent 60%);
+  }
+  #fireworks-canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;
+  }
+  .love-letter{
+    position:relative;
+    z-index:2;
+    max-width:680px;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,217,226,0.9);
+    border-radius:18px;
+    padding:48px 40px;
+    box-shadow:0 30px 60px -20px var(--shadow-rose);
+  }
+  .love-letter h2{
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:clamp(1.6rem,4vw,2.2rem);
+    margin-bottom:22px;
+  }
+  .love-letter p{
+    font-family:'Tajawal', sans-serif;
+    font-size:1.08rem;
+    line-height:2.15;
+    color:var(--ink);
+    text-align:right;
+    margin-bottom:16px;
+  }
+  .signature{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--rose);
+    font-size:1.3rem;
+    margin-top:18px;
+    direction:ltr;
+    text-align:left;
+  }
+
+  /* ===== romantic photo under the love letter ===== */
+  .letter-photo-wrap{
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .letter-photo-frame{
+    width:min(380px, 78%);
+    border-radius:20px;
+    padding:8px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.85), rgba(255,217,226,0.55));
+    border:1px solid rgba(255,217,226,0.9);
+    box-shadow:0 25px 50px -22px var(--shadow-rose);
+  }
+  .letter-photo-frame img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+    background:linear-gradient(135deg, var(--soft-pink), var(--blush-mist));
+  }
+  .letter-photo-caption{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:0.95rem;
+    margin-top:14px;
+    direction:rtl;
+  }
+
+  /* ===== Day 2 letter screen ===== */
+  #screen-2b{
+    background:radial-gradient(circle at 50% 70%, rgba(255,217,226,0.4), transparent 55%);
+  }
+  .day2-badge{
+    font-family:'Tajawal', sans-serif;
+    letter-spacing:0.3em;
+    font-size:0.7rem;
+    color:var(--rose);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .day2-letter{
+    position:relative;
+    max-width:680px;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,217,226,0.9);
+    border-radius:18px;
+    padding:46px 38px;
+    box-shadow:0 30px 60px -20px var(--shadow-rose);
+  }
+  .day2-letter h2{
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:clamp(1.5rem,4vw,2.1rem);
+    margin-bottom:24px;
+  }
+  .day2-letter p{
+    font-family:'Tajawal', sans-serif;
+    font-size:1.06rem;
+    line-height:2.15;
+    color:var(--ink);
+    text-align:right;
+    margin-bottom:16px;
+  }
+  .day2-letter .heart-line{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--rose);
+    font-size:1.2rem;
+    margin-top:18px;
+    text-align:center;
+  }
+
+  /* ===== Pride / achievement screen ===== */
+  #screen-pride{
+    background:radial-gradient(circle at 50% 25%, rgba(216,166,87,0.12), transparent 55%);
+  }
+  .pride-eyebrow{
+    font-family:'Tajawal', sans-serif;
+    letter-spacing:0.3em;
+    font-size:0.72rem;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .pride-title{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(1.8rem,5vw,2.7rem);
+    color:var(--deep-red);
+    line-height:1.5;
+    max-width:600px;
+  }
+  .pride-photo-frame{
+    margin-top:38px;
+    width:min(340px, 76%);
+    border-radius:24px;
+    padding:10px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(216,166,87,0.18), rgba(255,217,226,0.55));
+    border:1px solid rgba(216,166,87,0.35);
+    box-shadow:0 30px 60px -22px var(--shadow-rose);
+    position:relative;
+  }
+  .pride-photo-frame::before{
+    content:'✦';
+    position:absolute;
+    top:-14px; left:50%;
+    transform:translateX(-50%);
+    color:var(--gold);
+    font-size:1.3rem;
+    background:var(--blush-mist);
+    width:30px; height:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 4px 14px var(--shadow-rose);
+  }
+  .pride-photo-frame img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border-radius:18px;
+    display:block;
+    background:linear-gradient(135deg, var(--soft-pink), var(--blush-mist));
+  }
+  .pride-caption{
+    margin-top:18px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:1rem;
+    direction:rtl;
+  }
+
+  /* ===== scratch-to-reveal memory cards ===== */
+  #screen-scratch{
+    padding-top:9vh;
+    padding-bottom:9vh;
+  }
+  .scratch-stack{
+    width:100%;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    gap:44px;
+  }
+  .scratch-card{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/5;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 25px 55px -20px var(--shadow-rose);
+    border:1px solid var(--soft-pink);
+  }
+  .scratch-caption{
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:1.15rem;
+    margin-bottom:14px;
+    line-height:1.6;
+  }
+  .scratch-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background:linear-gradient(135deg, var(--soft-pink), var(--blush-mist));
+  }
+  .scratch-overlay{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    touch-action:none;
+  }
+  .scratch-hint{
+    position:absolute;
+    bottom:14px; left:0; right:0;
+    text-align:center;
+    font-family:'Tajawal', sans-serif;
+    font-size:0.78rem;
+    color:var(--white);
+    letter-spacing:0.05em;
+    z-index:3;
+    pointer-events:none;
+    text-shadow:0 2px 8px rgba(0,0,0,0.25);
+    transition:opacity .4s ease;
+  }
+  .scratch-card.revealed .scratch-hint{ opacity:0; }
+
+  /* ===== TIMELINE ===== */
+  #timeline-section{
+    min-height:100vh;
+    padding:10vh 6vw;
+    position:relative;
+  }
+  .section-title{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(1.8rem,4.5vw,2.6rem);
+    color:var(--deep-red);
+    margin-bottom:8px;
+  }
+  .section-sub{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:1.1rem;
+    margin-bottom:60px;
+    direction:ltr;
+  }
+
+  .timeline{
+    position:relative;
+    max-width:900px;
+    margin:0 auto;
+    padding:40px 0;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    top:0; bottom:0; left:50%;
+    width:2px;
+    background:linear-gradient(to bottom, transparent, var(--dusty-rose) 8%, var(--rose) 50%, var(--dusty-rose) 92%, transparent);
+    transform:translateX(-50%);
+  }
+
+  .t-item{
+    display:flex;
+    align-items:center;
+    width:100%;
+    margin-bottom:90px;
+    position:relative;
+  }
+  .t-item:last-child{ margin-bottom:0; }
+  .t-item.left{ justify-content:flex-start; }
+  .t-item.right{ justify-content:flex-end; }
+
+  .t-card{
+    width:42%;
+    background:var(--white);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 20px 45px -18px var(--shadow-rose);
+    border:1px solid var(--soft-pink);
+    position:relative;
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .t-item.left .t-card{ transform:translateX(-30px); }
+  .t-item.right .t-card{ transform:translateX(30px); }
+  .t-card.visible{ opacity:1; transform:translate(0,0); }
+
+  .t-card img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:10px;
+    display:block;
+    background:linear-gradient(135deg, var(--soft-pink), var(--blush-mist));
+  }
+  .t-date{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    color:var(--rose);
+    font-size:1.15rem;
+    margin-top:12px;
+    direction:ltr;
+    text-align:center;
+    letter-spacing:0.04em;
+  }
+
+  .t-node{
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-50%);
+    top:50%;
+    width:16px;height:16px;
+    background:var(--rose);
+    border:3px solid var(--white);
+    border-radius:50%;
+    box-shadow:0 0 0 4px var(--shadow-rose);
+    z-index:2;
+  }
+
+  /* mystery card variant */
+  .t-card.mystery{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    aspect-ratio:4/3;
+    background:linear-gradient(135deg, var(--soft-pink), var(--dusty-rose));
+  }
+  .mystery-mark{
+    font-family:'Cormorant Garamond', serif;
+    font-size:3.2rem;
+    color:var(--white);
+    font-weight:600;
+    text-shadow:0 4px 18px rgba(0,0,0,0.15);
+  }
+  .t-card.mystery .t-date{ display:none; }
+  .mystery-cap{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--rose);
+    margin-top:12px;
+    text-align:center;
+    font-size:1rem;
+  }
+
+  @media (max-width:720px){
+    .timeline::before{ left:22px; }
+    .t-item.left, .t-item.right{ justify-content:flex-start; padding-right:0; }
+    .t-card{ width:calc(100% - 56px); margin-right:0; margin-left:56px; }
+    .t-item.left .t-card, .t-item.right .t-card{ transform:translateY(20px); }
+    .t-node{ left:22px; }
+  }
+
+  /* ===== screen 3 : wait for video ===== */
+  #screen-3{ }
+  .wait-text{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(1.7rem,4.5vw,2.6rem);
+    color:var(--deep-red);
+    margin-bottom:30px;
+  }
+  .video-frame{
+    width:min(720px, 86vw);
+    aspect-ratio:16/9;
+    border-radius:18px;
+    background:linear-gradient(135deg, var(--white), var(--blush-mist));
+    border:1.5px dashed var(--dusty-rose);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 25px 55px -20px var(--shadow-rose);
+    margin-top:10px;
+  }
+  .video-frame video{
+    width:100%;height:100%;
+    border-radius:18px;
+    display:block;
+  }
+  .video-placeholder-text{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:1.05rem;
+    padding:0 20px;
+    direction:rtl;
+  }
+
+  /* ===== screen 4 : final ===== */
+  #screen-4{}
+  .final-title{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(2rem,5.5vw,3.1rem);
+    color:var(--deep-red);
+  }
+  .final-sub{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--rose);
+    font-size:1.2rem;
+    margin-top:16px;
+    direction:rtl;
+  }
+  .heart-icon{
+    margin-top:30px;
+    font-size:2.2rem;
+    color:var(--rose);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.15); }
+  }
+
+  /* ===== SCREEN 5 : playful quiz ===== */
+  #screen-5{
+    padding-top:8vh;
+    padding-bottom:8vh;
+  }
+  .quiz-intro{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:1.1rem;
+    margin-bottom:46px;
+    max-width:520px;
+    direction:rtl;
+    line-height:1.9;
+  }
+  .quiz-wrap{
+    width:100%;
+    max-width:640px;
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  .quiz-card{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(8px);
+    border:1px solid var(--soft-pink);
+    border-radius:18px;
+    padding:28px 26px;
+    box-shadow:0 18px 40px -18px var(--shadow-rose);
+    text-align:right;
+  }
+  .quiz-q{
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:1.25rem;
+    margin-bottom:18px;
+  }
+  .quiz-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .quiz-opt{
+    background:var(--white);
+    border:1.4px solid var(--soft-pink);
+    border-radius:30px;
+    padding:10px 16px;
+    font-family:'Tajawal', sans-serif;
+    font-size:0.92rem;
+    color:var(--ink);
+    cursor:pointer;
+    transition:all .3s ease;
+    text-align:center;
+  }
+  .quiz-opt:hover{
+    border-color:var(--rose);
+    background:var(--blush-mist);
+    transform:translateY(-2px);
+  }
+  .quiz-opt.selected{
+    background:linear-gradient(120deg, var(--rose), var(--deep-red));
+    color:var(--white);
+    border-color:var(--deep-red);
+    box-shadow:0 8px 20px var(--shadow-rose);
+  }
+  @media (max-width:480px){
+    .quiz-options{ grid-template-columns:1fr; }
+  }
+
+  /* ===== open-text quiz question ===== */
+  .quiz-textarea{
+    width:100%;
+    min-height:90px;
+    background:var(--white);
+    border:1.4px solid var(--soft-pink);
+    border-radius:16px;
+    padding:14px 16px;
+    font-family:'Tajawal', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+    text-align:right;
+    direction:rtl;
+    resize:vertical;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .quiz-textarea::placeholder{
+    color:var(--dusty-rose);
+    opacity:0.75;
+  }
+  .quiz-textarea:focus{
+    outline:none;
+    border-color:var(--rose);
+    box-shadow:0 0 0 4px var(--shadow-rose);
+  }
+
+  .whatsapp-btn{
+    margin-top:48px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(120deg, #25D366, #1fb855);
+    color:var(--white);
+    font-family:'Tajawal', sans-serif;
+    font-size:0.98rem;
+    font-weight:500;
+    letter-spacing:0.05em;
+    padding:15px 38px;
+    border-radius:40px;
+    text-decoration:none;
+    box-shadow:0 14px 30px -8px rgba(37,211,102,0.45);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .whatsapp-btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 18px 38px -8px rgba(37,211,102,0.55);
+  }
+  .whatsapp-btn svg{ width:20px; height:20px; fill:var(--white); }
+
+  .quiz-hint{
+    margin-top:14px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:0.92rem;
+    direction:rtl;
+  }
+
+  /* ===== SCREEN 6 : countdown + locked boxes ===== */
+  #screen-6{
+    padding-top:8vh;
+    padding-bottom:10vh;
+  }
+  .countdown-wrap{
+    display:flex;
+    gap:18px;
+    margin-bottom:64px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .cd-box{
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(8px);
+    border:1px solid var(--soft-pink);
+    border-radius:16px;
+    padding:18px 22px;
+    min-width:84px;
+    box-shadow:0 16px 34px -16px var(--shadow-rose);
+  }
+  .cd-num{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:2.1rem;
+    color:var(--deep-red);
+    direction:ltr;
+  }
+  .cd-label{
+    font-family:'Tajawal', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    color:var(--rose);
+    margin-top:4px;
+    text-transform:uppercase;
+  }
+
+  .locked-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    width:100%;
+    max-width:920px;
+  }
+  @media (max-width:760px){
+    .locked-grid{ grid-template-columns:1fr; }
+  }
+
+  .locked-card{
+    position:relative;
+    background:linear-gradient(160deg, var(--white), var(--blush-mist));
+    border:1px solid var(--soft-pink);
+    border-radius:20px;
+    padding:38px 20px 30px;
+    box-shadow:0 22px 46px -20px var(--shadow-rose);
+    cursor:pointer;
+    transition:transform .4s ease, box-shadow .4s ease;
+    overflow:hidden;
+    text-align:center;
+  }
+  .locked-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 30px 60px -18px var(--shadow-rose);
+  }
+  .locked-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 40%),
+      radial-gradient(circle at 75% 75%, rgba(232,154,174,0.5), transparent 45%);
+    filter:blur(6px);
+    z-index:0;
+  }
+  .cloud-icon{
+    position:relative;
+    z-index:1;
+    font-size:2.6rem;
+    margin-bottom:6px;
+  }
+  .lock-icon{
+    position:relative;
+    z-index:1;
+    font-size:1.5rem;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .locked-title{
+    position:relative;
+    z-index:1;
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:1.15rem;
+    margin-bottom:6px;
+  }
+  .locked-sub{
+    position:relative;
+    z-index:1;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--dusty-rose);
+    font-size:0.85rem;
+    direction:ltr;
+  }
+
+  /* popup overlay */
+  .popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(90,34,48,0.35);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .35s ease;
+    padding:20px;
+  }
+  .popup-overlay.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .popup-box{
+    background:var(--white);
+    border-radius:20px;
+    padding:36px 32px;
+    max-width:380px;
+    text-align:center;
+    box-shadow:0 30px 70px -20px rgba(90,34,48,0.4);
+    border:1px solid var(--soft-pink);
+    transform:scale(0.9);
+    transition:transform .35s ease;
+  }
+  .popup-overlay.show .popup-box{ transform:scale(1); }
+  .popup-box p{
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:1.15rem;
+    line-height:1.8;
+    margin-bottom:20px;
+    white-space:pre-line;
+  }
+  .popup-close{
+    background:var(--rose);
+    color:var(--white);
+    border:none;
+    padding:10px 32px;
+    border-radius:30px;
+    font-family:'Tajawal', sans-serif;
+    cursor:pointer;
+    transition:background .3s ease;
+  }
+  .popup-close:hover{ background:var(--deep-red); }
+
+  /* ===== quote of the day (closing cloud) ===== */
+  #screen-quote{
+    padding-top:8vh;
+    padding-bottom:14vh;
+  }
+  .quote-eyebrow{
+    font-family:'Tajawal', sans-serif;
+    letter-spacing:0.3em;
+    font-size:0.72rem;
+    color:var(--rose);
+    text-transform:uppercase;
+    margin-bottom:30px;
+  }
+  .quote-cloud{
+    position:relative;
+    max-width:560px;
+    padding:46px 40px;
+    background:linear-gradient(160deg, rgba(255,255,255,0.9), rgba(255,217,226,0.5));
+    border:1px solid rgba(255,217,226,0.9);
+    box-shadow:0 30px 60px -22px var(--shadow-rose);
+    border-radius:50% 50% 48% 48% / 60% 60% 40% 40%;
+  }
+  .quote-cloud::before,
+  .quote-cloud::after{
+    content:'';
+    position:absolute;
+    background:inherit;
+    border:inherit;
+    border-radius:50%;
+  }
+  .quote-cloud::before{
+    width:34%; height:34%;
+    top:-12%; left:14%;
+  }
+  .quote-cloud::after{
+    width:26%; height:26%;
+    top:-8%; right:16%;
+  }
+  .quote-text{
+    position:relative;
+    z-index:2;
+    font-family:'Aref Ruqaa', serif;
+    color:var(--deep-red);
+    font-size:clamp(1.25rem,3.6vw,1.7rem);
+    line-height:2.1;
+  }
+
+  footer.sig{
+    position:fixed;
+    bottom:10px;
+    left:0;right:0;
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.78rem;
+    color:var(--dusty-rose);
+    opacity:0.7;
+    z-index:5;
+    direction:ltr;
+    pointer-events:none;
+  }
+
+  /* ===== top navigation ===== */
+  .top-nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 22px;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,217,226,0.7);
+  }
+  .top-nav .nav-badge{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Tajawal', sans-serif;
+    font-size:0.78rem;
+    color:var(--deep-red);
+    letter-spacing:0.02em;
+  }
+  .top-nav .nav-dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--rose);
+    box-shadow:0 0 0 4px var(--shadow-rose);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  .top-nav .nav-cta{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.92rem;
+    color:var(--rose);
+  }
+  @media (max-width:480px){
+    .top-nav{ padding:11px 16px; }
+    .top-nav .nav-badge{ font-size:0.68rem; }
+    .top-nav .nav-cta{ font-size:0.8rem; }
+  }
+
+  /* ===== birthday-moment overlay (fires exactly at midnight target) ===== */
+  #bday-overlay{
+    position:fixed;
+    inset:0;
+    z-index:80;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle at 50% 40%, rgba(155,34,53,0.55), rgba(20,4,10,0.75));
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .6s ease;
+    padding:20px;
+  }
+  #bday-overlay.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+  #bday-fireworks-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  .bday-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    transform:scale(0.85);
+    transition:transform .6s ease;
+  }
+  #bday-overlay.show .bday-content{ transform:scale(1); }
+  .bday-clock{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.1rem;
+    letter-spacing:0.3em;
+    color:var(--soft-pink);
+    margin-bottom:18px;
+    direction:ltr;
+  }
+  .bday-en{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(2rem,7vw,3.6rem);
+    color:var(--white);
+    text-shadow:0 4px 30px rgba(0,0,0,0.35);
+    direction:ltr;
+  }
+  .bday-ar{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(1.6rem,5vw,2.4rem);
+    color:var(--soft-pink);
+    margin-top:14px;
+    direction:rtl;
+  }
+  .bday-close{
+    margin-top:38px;
+    background:transparent;
+    border:1.5px solid var(--white);
+    color:var(--white);
+    font-family:'Tajawal', sans-serif;
+    font-size:0.9rem;
+    letter-spacing:0.15em;
+    padding:12px 38px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:all .3s ease;
+  }
+  .bday-close:hover{
+    background:var(--white);
+    color:var(--deep-red);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV — شريط علوي ثابت ============ -->
+<nav class="top-nav">
+  <span class="nav-badge"><span class="nav-dot"></span> تحديث اليوم نزل</span>
+  <span class="nav-cta">استمتعي ✨</span>
+</nav>
+
+<!-- petals ambience -->
+<div id="petals"></div>
+
+<!-- ============ SCREEN 1 — افتتاحية + تهنئة بالانجليزي ============ -->
+<section class="screen" id="screen-1">
+  <div class="ornament-line"></div>
+  <p class="eyebrow">For My Love</p>
+  <h1 class="name-display">دعاء</h1>
+  <p class="english-wish">
+    Wishing the most beautiful soul I know
+    <span class="big">Happy Birthday, Doaa ❀</span>
+  </p>
+  <div class="diamond"></div>
+  <button class="next-btn" onclick="goTo('screen-2')">التالي</button>
+</section>
+
+<!-- ============ SCREEN 2 — ألعاب نارية + رسالة الحب ============ -->
+<section class="screen" id="screen-2">
+  <canvas id="fireworks-canvas"></canvas>
+  <div class="love-letter">
+    <h2>إلى أغلى ما في حياتي</h2>
+    <p>
+      دعاء، كل كلمة سأكتبها الآن تقف عاجزة أمام ما أحمله لك في قلبي.
+      أنتِ ذاك النور الذي دخل حياتي بهدوء وغيّر كل شيء فيها للأفضل،
+      أنتِ السكينة التي أبحث عنها في آخر يومي المتعب، وأنتِ السبب
+      الذي يجعلني أبتسم دون أن أشعر.
+    </p>
+    <p>
+      مع كل عام يمر، يكبر حبي لك أكثر، وتزداد معرفتي بأنك أنتِ
+      الإنسانة التي اخترها قلبي ليرتاح إليها. أحبّ تفاصيلك الصغيرة،
+      ضحكتك، طريقتك في الاهتمام بمن حولك، وصبرك الجميل معي.
+    </p>
+    <p>
+      في يوم ميلادك، لا أملك إلا أن أعدك أنني سأبقى إلى جانبك،
+      أحتفي بك كل يوم لا في عيد ميلادك فقط، وأشكر الله أنه جمعنا
+      في هذه الحياة. كل عام وأنتِ أجمل قلب عرفته الأرض.
+    </p>
+    <p class="signature">— forever yours</p>
+
+    <!-- 📌 الصورة موضوعة بمجلد assets باسم img.jpeg -->
+    <div class="letter-photo-wrap">
+      <div class="letter-photo-frame">
+        <img src="assets/img.jpeg" alt="ذكرى جميلة" onerror="this.src='https://placehold.co/380x475/FFD9E2/9B2235?text=%D8%AF%D8%B9%D8%A7%D8%A1'">
+      </div>
+      <p class="letter-photo-caption">من أجمل اللحظات معك</p>
+    </div>
+  </div>
+  <button class="next-btn" style="margin-top:40px; position:relative; z-index:2;" onclick="goTo('screen-2b')">التالي</button>
+</section>
+
+<!-- ============ SCREEN 2B — رسالة اليوم الثاني ============ -->
+<section class="screen" id="screen-2b">
+  <p class="day2-badge">Day Two</p>
+  <div class="day2-letter">
+    <h2>رسالة اليوم الثاني 🤍</h2>
+    <p>
+      بدي أحكيلك شغلة يمكن ما قدرت أوصلها صح قبل هيك...
+      إنتِ مش بس البنت اللي بحبها، إنتِ أقرب شخص على قلبي. مع الأيام
+      صرتِ أول شخص بفكر فيه لما أصحى، وآخر شخص ببالي قبل ما أنام.
+    </p>
+    <p>
+      بصراحة، بزعل لما أحس إنك بعيدة، وبفرح من أبسط تفصيل منك.
+      مرات بس أعيد كلامك براسي وأبتسم بدون سبب.
+    </p>
+    <p>
+      يمكن أوقات أبين ساكت أو متغيّر، بس بالحقيقة هاي أكثر الأوقات
+      اللي بكون محتاجك فيها. وجودك لحاله بيريّحني، وحتى لما ما نحكي
+      كثير بحس بالأمان بس لأنك موجودة.
+    </p>
+    <p>
+      بحبك بطريقة صعبة أوصفها، وبهمني زعلك أكثر من زعلي. وكل اللي
+      بتمناه إنك تضلي قريبة مني، لأنك صرتِ جزء كبير من حياتي.
+    </p>
+    <p>
+      بكل بساطة، لما أكون معك بحس إني بخير، ولما تبعدي عني بحس إن
+      في إشي ناقص.
+    </p>
+    <p class="heart-line">❤️</p>
+  </div>
+  <button class="next-btn" style="margin-top:40px;" onclick="goTo('timeline-section')">التالي</button>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline-section">
+  <h2 class="section-title">رحلتنا معًا</h2>
+  <p class="section-sub">our timeline</p>
+
+  <div class="timeline">
+
+    <div class="t-item right">
+      <div class="t-card">
+        <!-- 📌 ضعي هنا صورة تاريخ 2-7-2023 -->
+        <img src="assets/2023.jpg" alt="2-7-2023" onerror="this.src='https://placehold.co/400x300/FFD9E2/9B2235?text=2-7-2023'">
+        <p class="t-date">02 . 07 . 2023</p>
+      </div>
+      <div class="t-node"></div>
+    </div>
+
+    <div class="t-item left">
+      <div class="t-card">
+        <!-- 📌 ضعي هنا صورة تاريخ 2-7-2024 -->
+        <img src="assets/2024.jpg" alt="2-7-2024" onerror="this.src='https://placehold.co/400x300/FFD9E2/9B2235?text=2-7-2024'">
+        <p class="t-date">02 . 07 . 2024</p>
+      </div>
+      <div class="t-node"></div>
+    </div>
+
+    <div class="t-item right">
+      <div class="t-card">
+        <!-- 📌 ضعي هنا صورة تاريخ 2-7-2025 -->
+        <img src="assets/2025.jpg" alt="2-7-2025" onerror="this.src='https://placehold.co/400x300/FFD9E2/9B2235?text=2-7-2025'">
+        <p class="t-date">02 . 07 . 2025</p>
+      </div>
+      <div class="t-node"></div>
+    </div>
+
+    <div class="t-item left">
+      <div class="t-card mystery">
+        <span class="mystery-mark">؟</span>
+      </div>
+      <div class="t-node"></div>
+    </div>
+    <p class="mystery-cap" style="margin-top:-70px; margin-right:8%; max-width:42%; margin-left:auto;">02 . 07 . 2026 — قصتنا لم تنتهِ بعد</p>
+
+  </div>
+
+  <div style="display:flex; justify-content:center; margin-top:80px;">
+    <button class="next-btn" onclick="goTo('screen-3')">التالي</button>
+  </div>
+</section>
+
+<!-- ============ SCREEN 3 — جملة + فيديو ============ -->
+<section class="screen" id="screen-3">
+  <div class="ornament-line"></div>
+  <h2 class="wait-text">تعي ساعديني شوي 🌹</h2>
+
+  <div class="video-frame">
+    <!-- 📌 فيديو عيد الميلاد من Google Drive -->
+    <iframe src="https://drive.google.com/file/d/18Gd0pfk0rwsfgvCvVF0mYZFkpg1YPZRZ/preview" width="100%" height="100%" allow="autoplay" style="border-radius:18px;border:none;"></iframe>
+  </div>
+
+  <div class="ornament-line bottom"></div>
+  <button class="next-btn" onclick="goTo('screen-4')">التالي</button>
+</section>
+
+<!-- ============ SCREEN 4 — المفاجأة ============ -->
+<section class="screen" id="screen-4">
+  <div class="ornament-line"></div>
+  <h2 class="final-title">ساعديني بختيار المفاجأة 🎁</h2>
+  <p class="final-sub">one more surprise, just for you</p>
+  <div class="heart-icon">❀</div>
+  <button class="next-btn" style="margin-top:46px;" onclick="goTo('screen-5')">التالي</button>
+</section>
+
+<!-- ============ SCREEN 5 — أسئلة تشويقية + واتساب ============ -->
+<section class="screen" id="screen-5">
+  <div class="ornament-line"></div>
+  <h2 class="final-title" style="font-size:clamp(1.7rem,4.5vw,2.4rem);">شوي أسئلة بسيطة 😏</h2>
+  <p class="quiz-intro">جاوبي بصراحة، كل إجابة بتقرّبني خطوة أكتر من مفاجأتك… ولا تفكري كتير، خليها عفوية 🤍</p>
+
+  <div class="quiz-wrap">
+
+    <div class="quiz-card">
+      <p class="quiz-q">1. شو بتفضلي أكتر؟</p>
+      <div class="quiz-options" data-question="القطعة المفضلة">
+        <button class="quiz-opt" type="button">سلسال</button>
+        <button class="quiz-opt" type="button">سوار</button>
+        <button class="quiz-opt" type="button">حلق</button>
+        <button class="quiz-opt" type="button">خاتم</button>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <p class="quiz-q">2. شو لونها يلي بيلمع بعينك؟</p>
+      <div class="quiz-options" data-question="اللون">
+        <button class="quiz-opt" type="button">فضة</button>
+        <button class="quiz-opt" type="button">ذهب أصفر</button>
+        <button class="quiz-opt" type="button">ذهب أبيض</button>
+        <button class="quiz-opt" type="button">روز غولد</button>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <p class="quiz-q">3. شو الشكل يلي يشبهك أكتر؟</p>
+      <div class="quiz-options" data-question="الشكل">
+        <button class="quiz-opt" type="button">كلاسيكي وأنيق</button>
+        <button class="quiz-opt" type="button">بسيط ومينيمال</button>
+        <button class="quiz-opt" type="button">يلمع وفخم</button>
+        <button class="quiz-opt" type="button">مميز ومختلف</button>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <p class="quiz-q">4. شو يخليكي أسعد؟</p>
+      <div class="quiz-options" data-question="الإحساس">
+        <button class="quiz-opt" type="button">شي بلبسه يوميًا</button>
+        <button class="quiz-opt" type="button">شي رومانسي</button>
+        <button class="quiz-opt" type="button">شي فاخر</button>
+        <button class="quiz-opt" type="button">مفاجأة كاملة</button>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <p class="quiz-q">5. اوصفيلي أحلى يوم كيف بتحبيه؟</p>
+      <textarea class="quiz-textarea" id="quiz-open-day" placeholder="اكتبي براحتك… 🤍" rows="3"></textarea>
+    </div>
+
+  </div>
+
+  <!-- 📌 رقم الواتساب موضوع بالأسفل بصيغة دولية بدون أصفار أو رموز -->
+  <a id="whatsapp-link" class="whatsapp-btn" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.4 4 3.6 7.8 3.6 12.45c0 1.6.45 3.08 1.23 4.35L4 20.5l3.82-1c1.22.67 2.62 1.05 4.13 1.05 4.65 0 8.45-3.8 8.45-8.45 0-2.27-.9-4.4-2.8-6.28zM12.05 19c-1.3 0-2.57-.35-3.66-1l-.26-.15-2.27.6.6-2.22-.17-.27a6.93 6.93 0 0 1-1.06-3.66c0-3.83 3.12-6.95 6.95-6.95 1.86 0 3.6.73 4.92 2.05a6.9 6.9 0 0 1 2.04 4.9c0 3.83-3.12 6.7-6.05 6.7zm3.8-5.2c-.2-.1-1.2-.6-1.4-.66-.2-.07-.34-.1-.48.1-.14.2-.55.66-.68.8-.12.13-.25.15-.46.05-.62-.31-1.27-.71-1.84-1.3-.49-.5-.8-.94-1.05-1.4-.13-.24-.02-.38.1-.5.13-.13.27-.34.4-.5.13-.18.18-.3.27-.5.1-.2.04-.35-.05-.5-.1-.13-.43-1.05-.6-1.45-.16-.4-.33-.34-.45-.34h-.4c-.13 0-.35.05-.54.27-.2.22-.75.74-.75 1.8 0 1.06.77 2.08.88 2.23.1.13 1.45 2.27 3.62 3.18 1.78.74 2.15.6 2.54.55.4-.05 1.2-.5 1.37-.97.17-.48.17-.9.12-1-.05-.08-.2-.13-.4-.23z"/></svg>
+    إبعتي إجاباتك على واتساب
+  </a>
+  <p class="quiz-hint">رح يفتح واتساب مع رسالة جاهزة فيها أجوبتك — بس اضغطي إرسال 💌</p>
+</section>
+
+<!-- ============ SCREEN 6 — تايمر + صناديق مقفولة ============ -->
+<section class="screen" id="screen-6">
+  <div class="ornament-line"></div>
+  <h2 class="final-title" style="font-size:clamp(1.7rem,4.5vw,2.4rem);">العد التنازلي ليومنا الكبير</h2>
+  <p class="quiz-intro" style="margin-bottom:20px;">كل المفاجآت رح تنفتح بـ 2 تموز 🤍</p>
+
+  <div class="countdown-wrap" id="countdown">
+    <div class="cd-box"><div class="cd-num" id="cd-days">00</div><div class="cd-label">يوم</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">ساعة</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">دقيقة</div></div>
+    <div class="cd-box"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">ثانية</div></div>
+  </div>
+
+  <div class="locked-grid">
+    <div class="locked-card"
+         data-unlock-msg="هدية حلوة بانتظارك… بس لازم توصل 2-7 الأول 🎁"
+         data-unlocked-msg="🎉 المفاجأة صارت مفتوحة الحين! بدّلي هذا الجزء بمحتوى الهدية الحقيقي.">
+      <div class="cloud-icon">☁️</div>
+      <div class="lock-icon">🔒</div>
+      <div class="locked-title">الهدية 🎁</div>
+      <div class="locked-sub">unlocks · 02 . 07</div>
+    </div>
+
+    <div class="locked-card"
+         data-unlock-msg="في وجهة حلوة محجوزة لنا… التفاصيل تنفتح 2-7 📍"
+         data-unlocked-msg="وجهتنا: البحر الميت 🌊📍
+حجزنا يوم كامل هناك عشانك، عيدك رح نحتفل فيه على ضفاف أخفض نقطة على وجه الأرض 🤍
+https://www.google.com/maps/search/?api=1&query=Dead+Sea+Jordan">
+      <div class="cloud-icon">☁️</div>
+      <div class="lock-icon">🔒</div>
+      <div class="locked-title">الوجهة 📍</div>
+      <div class="locked-sub">unlocks · 02 . 07</div>
+    </div>
+
+    <div class="locked-card"
+         data-unlock-msg="كتبتلك رسالة خاصة كمان… رح تقريها بـ 2-7 💌"
+         data-unlocked-msg="حبيبتي دوديي
+كل عاام وانتي بالف خييررر ياا ربي
+كل عام وشخصي المضل وروحي وبنتي ودلوعتي بالف خيررر ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+ياريت كل ايام السنه زي اليوممم 🥹✨واخيرراا حبيبيي كبررررر قدامييي
+حرفياااا شعور لا يووصفففف
+كل يوم وكل سنه بشوفك بتكبري قدامي وبشوفك وانتي بتنجزي وبتوصلي
+فخور فيكييي ، مبسوط فيكي ، بحبككك بحبكك كثيرررر ❤️🫂
+2/7 اليوم الي اجت فيه حبيبتي دوديي عيدي عيدي ، بتذكر كم كنت حاس بشعورر حلووو اول عيد ميلاد وحنا سواا
+فما بالك هسا
+هذا رابع واحدد 🥺🥺🥺
+شو هالحلاوه كم كبرنا كم انبسطنااا
+الله يخليلي اياكيي ونضل سنه ورا سنهه نكبر وحنا سواا 🫂
+دودي حبيبيييي يا احلى حدا بحياتيييي
+كل عام وانتي الخير لكل عاامم 🎉🎂🎂
+بكرا حييكوونن يوم بجننن
+ووهوووو">
+      <div class="cloud-icon">☁️</div>
+      <div class="lock-icon">🔒</div>
+      <div class="locked-title">رسالة خاصة 💌</div>
+      <div class="locked-sub">unlocks · 02 . 07</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREEN PRIDE — فخور بإنجازك ============ -->
+<section class="screen" id="screen-pride">
+  <p class="pride-eyebrow">Proud of you</p>
+  <h2 class="pride-title">أنا فخور جدًا بإنجازك يا روحي ✦</h2>
+
+  <div class="pride-photo-frame">
+    <!-- 📌 الصورة موضوعة بمجلد assets باسم imggg.jpeg -->
+    <img src="assets/imggg.jpeg" alt="فخور بك" onerror="this.src='https://placehold.co/340x425/FFD9E2/9B2235?text=%D9%85%D8%A8%D8%B1%D9%88%D9%83'">
+  </div>
+  <p class="pride-caption">كل خطوة بتمشيها بتخليني أفخر فيكي أكتر ✨</p>
+</section>
+
+<!-- ============ SCREEN SCRATCH — كاردز الكشط ============ -->
+<section class="screen" id="screen-scratch">
+  <div class="ornament-line"></div>
+  <h2 class="section-title" style="margin-bottom:8px;">ذكريات بانتظارنا</h2>
+  <p class="section-sub" style="margin-bottom:50px;">scratch to reveal</p>
+
+  <div class="scratch-stack">
+
+    <div class="scratch-card" data-card="1">
+      <p class="scratch-caption" style="position:absolute; top:-44px; right:0; left:0; text-align:center; z-index:2;">هاي الصورة بدنا نتصور زيها</p>
+      <!-- 📌 الصورة: assets/im4.jpeg -->
+      <img class="scratch-photo" src="assets/im4.jpeg" alt="بدنا نتصور زيها" onerror="this.src='https://placehold.co/400x500/FFD9E2/9B2235?text=im4'">
+      <canvas class="scratch-overlay"></canvas>
+      <p class="scratch-hint">امسحي بإصبعك لتكشفي الصورة 👆</p>
+    </div>
+
+    <div class="scratch-card" data-card="2">
+      <p class="scratch-caption" style="position:absolute; top:-44px; right:0; left:0; text-align:center; z-index:2;">راح نرسم ذكريات كثير سوا</p>
+      <!-- 📌 الصورة: assets/im2.jpeg -->
+      <img class="scratch-photo" src="assets/im2.jpeg" alt="ذكريات سوا" onerror="this.src='https://placehold.co/400x500/E89AAE/ffffff?text=im2'">
+      <canvas class="scratch-overlay"></canvas>
+      <p class="scratch-hint">امسحي بإصبعك لتكشفي الصورة 👆</p>
+    </div>
+
+    <div class="scratch-card" data-card="3">
+      <p class="scratch-caption" style="position:absolute; top:-44px; right:0; left:0; text-align:center; z-index:2;">أحلى أيامي بالحياة</p>
+      <!-- 📌 الصورة: assets/im1.jpeg -->
+      <img class="scratch-photo" src="assets/im1.jpeg" alt="أحلى أيامي" onerror="this.src='https://placehold.co/400x500/C2185B/ffffff?text=im1'">
+      <canvas class="scratch-overlay"></canvas>
+      <p class="scratch-hint">امسحي بإصبعك لتكشفي الصورة 👆</p>
+    </div>
+
+    <div class="scratch-card" data-card="4">
+      <p class="scratch-caption" style="position:absolute; top:-44px; right:0; left:0; text-align:center; z-index:2;">اليوم المنتظر</p>
+      <!-- 📌 الصورة: assets/im3.jpeg -->
+      <img class="scratch-photo" src="assets/im3.jpeg" alt="اليوم المنتظر" onerror="this.src='https://placehold.co/400x500/9B2235/ffffff?text=im3'">
+      <canvas class="scratch-overlay"></canvas>
+      <p class="scratch-hint">امسحي بإصبعك لتكشفي الصورة 👆</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SCREEN QUOTE — جملة اليوم الختامية ============ -->
+<section class="screen" id="screen-quote">
+  <p class="quote-eyebrow">Quote of the day</p>
+  <div class="quote-cloud">
+    <p class="quote-text">جاورت قلبك فعرفت كيف يورق العمر ويزهر</p>
+  </div>
+</section>
+
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-box">
+    <p id="popup-text">هاي المفاجأة رح تنفتح بـ 2 تموز ❤️</p>
+    <button class="popup-close" onclick="closePopup()">تمام 🤍</button>
+  </div>
+</div>
+
+<!-- ============ BIRTHDAY MOMENT OVERLAY — يفتح تلقائيًا الساعة 12:00 ============ -->
+<div id="bday-overlay">
+  <canvas id="bday-fireworks-canvas"></canvas>
+  <div class="bday-content">
+    <p class="bday-clock">🕛 12:00 AM · 02 . 07</p>
+    <p class="bday-en">Happy Birthday, My Love ❤️</p>
+    <p class="bday-ar">كل عام وأنتِ أجمل حدا بحياتي يا دعاء ❀</p>
+    <button class="bday-close" onclick="closeBdayOverlay()">تمام حبيبي 🤍</button>
+  </div>
+</div>
+
+<footer class="sig">doaa272003 · made with love</footer>
+
+<script>
+/* ===================== Smooth scroll to next section ===================== */
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+/* ===================== Falling petals ambience ===================== */
+(function(){
+  const container = document.getElementById('petals');
+  const colors = ['#FFD9E2','#E89AAE','#C2185B'];
+  const count = window.innerWidth < 600 ? 14 : 24;
+  for(let i=0;i<count;i++){
+    const p = document.createElement('div');
+    p.className='petal';
+    const size = 6 + Math.random()*8;
+    p.style.width = size+'px';
+    p.style.height = size+'px';
+    p.style.left = Math.random()*100+'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.borderRadius = '0 100% 0 100%';
+    p.style.setProperty('--drift', (Math.random()*80-40)+'px');
+    p.style.animationDuration = (10+Math.random()*12)+'s';
+    p.style.animationDelay = (Math.random()*-20)+'s';
+    container.appendChild(p);
+  }
+})();
+
+/* ===================== Timeline reveal on scroll ===================== */
+(function(){
+  const cards = document.querySelectorAll('.t-card');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+  },{threshold:0.25});
+  cards.forEach(c=>obs.observe(c));
+})();
+
+/* ===================== Reusable fireworks engine (used by screen-2 and the birthday overlay) ===================== */
+function createFireworksEngine(canvas){
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let running = false;
+
+  function resize(){
+    canvas.width = canvas.clientWidth || window.innerWidth;
+    canvas.height = canvas.clientHeight || window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const palette = ['#C2185B','#E89AAE','#FFD9E2','#9B2235','#ffffff','#D8A657'];
+
+  function spawnBurst(x,y){
+    const count = 55;
+    for(let i=0;i<count;i++){
+      const angle = (Math.PI*2*i)/count + Math.random()*0.2;
+      const speed = 2 + Math.random()*4;
+      particles.push({
+        x,y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        life: 60+Math.random()*30,
+        age:0,
+        color: palette[Math.floor(Math.random()*palette.length)],
+        size: 1.5+Math.random()*2
+      });
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.045; // gravity
+      p.vx *= 0.985;
+      p.age++;
+      const alpha = Math.max(0, 1 - p.age/p.life);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    particles = particles.filter(p=>p.age < p.life);
+    if(particles.length>0){
+      requestAnimationFrame(tick);
+    } else {
+      running = false;
+    }
+  }
+
+  function launchShow(){
+    resize();
+    const w = canvas.width, h = canvas.height;
+    const points = [
+      [w*0.25, h*0.32],
+      [w*0.5,  h*0.22],
+      [w*0.75, h*0.34],
+      [w*0.4,  h*0.45],
+      [w*0.6,  h*0.4]
+    ];
+    points.forEach((pt, idx)=>{
+      setTimeout(()=> spawnBurst(pt[0], pt[1]), idx*260);
+    });
+    if(!running){
+      running = true;
+      tick();
+    }
+  }
+
+  return { launchShow };
+}
+
+/* ===================== Fireworks on screen 2 ===================== */
+(function(){
+  const canvas = document.getElementById('fireworks-canvas');
+  const engine = createFireworksEngine(canvas);
+
+  const screen2 = document.getElementById('screen-2');
+  let triggered = false;
+  const obs2 = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !triggered){
+        triggered = true;
+        engine.launchShow();
+        setTimeout(engine.launchShow, 1400);
+      }
+    });
+  },{threshold:0.4});
+  obs2.observe(screen2);
+})();
+
+/* ===================== Quiz logic + WhatsApp message builder ===================== */
+(function(){
+  const answers = {};
+  const groups = document.querySelectorAll('.quiz-options');
+
+  groups.forEach(group=>{
+    const qLabel = group.getAttribute('data-question');
+    group.querySelectorAll('.quiz-opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        group.querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        answers[qLabel] = btn.textContent.trim();
+        updateWhatsappLink();
+      });
+    });
+  });
+
+  // سؤال النص الحر: "اوصفيلي أحلى يوم كيف بتحبيه"
+  const openDayField = document.getElementById('quiz-open-day');
+  if(openDayField){
+    openDayField.addEventListener('input', ()=>{
+      const value = openDayField.value.trim();
+      if(value){
+        answers['أحلى يوم'] = value;
+      } else {
+        delete answers['أحلى يوم'];
+      }
+      updateWhatsappLink();
+    });
+  }
+
+  // 📌 رقم الواتساب — بصيغة دولية بدون أصفار أو رموز (الأردن: 962 + رقم بدون الصفر الأول)
+  const PHONE_NUMBER = '962795045553';
+
+  function updateWhatsappLink(){
+    const lines = [
+      'هاي حبيبي 🤍 هاي أجوبتي على أسئلة المفاجأة:',
+      ''
+    ];
+    Object.keys(answers).forEach(k=>{
+      lines.push(`• ${k}: ${answers[k]}`);
+    });
+    if(Object.keys(answers).length === 0){
+      lines.push('(لسا ما اخترت إجابات 🙈)');
+    }
+    const msg = encodeURIComponent(lines.join('\n'));
+    document.getElementById('whatsapp-link').href = `https://wa.me/${PHONE_NUMBER}?text=${msg}`;
+  }
+
+  updateWhatsappLink(); // initialize with default link
+})();
+
+/* ===================== Countdown timer to July 2nd 2026 + auto birthday moment ===================== */
+(function(){
+  // 📌 لتغيير تاريخ الفتح، عدّلي القيمة التالية
+  const TARGET_DATE = new Date('2026-07-02T00:00:00');
+
+  const elDays = document.getElementById('cd-days');
+  const elHours = document.getElementById('cd-hours');
+  const elMins = document.getElementById('cd-mins');
+  const elSecs = document.getElementById('cd-secs');
+
+  function pad(n){ return n.toString().padStart(2,'0'); }
+
+  let bdayFired = false;
+
+  function tickCountdown(){
+    const now = new Date();
+    let diff = TARGET_DATE - now;
+
+    if(diff <= 0 && !bdayFired){
+      bdayFired = true;
+      triggerBdayMoment();
+    }
+
+    if(diff < 0) diff = 0;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    elDays.textContent = pad(days);
+    elHours.textContent = pad(hours);
+    elMins.textContent = pad(mins);
+    elSecs.textContent = pad(secs);
+  }
+
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // expose for the overlay module below
+  window.__TARGET_DATE = TARGET_DATE;
+})();
+
+/* ===================== Birthday moment overlay (auto pop at 12:00 AM 02.07) ===================== */
+(function(){
+  const overlay = document.getElementById('bday-overlay');
+  const bdayCanvas = document.getElementById('bday-fireworks-canvas');
+  const engine = createFireworksEngine(bdayCanvas);
+  let shown = false;
+
+  window.triggerBdayMoment = function(){
+    if(shown) return;
+    shown = true;
+    overlay.classList.add('show');
+    engine.launchShow();
+    setTimeout(engine.launchShow, 900);
+    setTimeout(engine.launchShow, 1900);
+    const interval = setInterval(()=>{
+      if(!overlay.classList.contains('show')){ clearInterval(interval); return; }
+      engine.launchShow();
+    }, 2600);
+  };
+
+  window.closeBdayOverlay = function(){
+    overlay.classList.remove('show');
+  };
+
+  // لو صفحة الموقع تفتحت أصلًا بعد لحظة العيد، اظهري الاحتفال فورًا
+  if(new Date() >= window.__TARGET_DATE){
+    setTimeout(window.triggerBdayMoment, 500);
+  }
+})();
+
+/* ===================== Locked surprise boxes ===================== */
+(function(){
+  // 📌 نفس تاريخ الفتح أعلاه — حافظي عليه متطابق بالحالتين
+  const UNLOCK_DATE = new Date('2026-07-02T00:00:00');
+
+  const overlay = document.getElementById('popup-overlay');
+  const popupText = document.getElementById('popup-text');
+  const cards = document.querySelectorAll('.locked-card');
+
+  function isUnlocked(){
+    return new Date() >= UNLOCK_DATE;
+  }
+
+  cards.forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const msg = isUnlocked()
+        ? card.getAttribute('data-unlocked-msg')
+        : card.getAttribute('data-unlock-msg');
+      popupText.textContent = msg;
+      overlay.classList.add('show');
+    });
+  });
+
+  window.closePopup = function(){
+    overlay.classList.remove('show');
+  };
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay){ overlay.classList.remove('show'); }
+  });
+})();
+
+/* ===================== Scratch-to-reveal memory cards ===================== */
+(function(){
+  const cards = document.querySelectorAll('.scratch-card');
+
+  cards.forEach(card=>{
+    const canvas = card.querySelector('.scratch-overlay');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let revealed = false;
+
+    const colors = ['#FFD9E2','#E89AAE','#C2185B','#9B2235'];
+    const baseColor = colors[(parseInt(card.getAttribute('data-card'),10) - 1) % colors.length];
+
+    function sizeCanvas(){
+      const rect = card.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      paintOverlay();
+    }
+
+    function paintOverlay(){
+      ctx.globalCompositeOperation = 'source-over';
+      const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+      grad.addColorStop(0, baseColor);
+      grad.addColorStop(1, '#ffffff');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
+
+    function scratchAt(x,y){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x,y,32,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    function getPos(e){
+      const rect = canvas.getBoundingClientRect();
+      const point = e.touches ? e.touches[0] : e;
+      return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+    }
+
+    function checkRevealProgress(){
+      if(revealed) return;
+      const data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      let cleared = 0;
+      const total = data.length / 4;
+      for(let i=3; i<data.length; i+=40){ // sample every 10th pixel for performance
+        if(data[i] < 80) cleared++;
+      }
+      const sampledTotal = total / 10;
+      if(cleared / sampledTotal > 0.55){
+        revealed = true;
+        card.classList.add('revealed');
+        canvas.style.transition = 'opacity .6s ease';
+        canvas.style.opacity = '0';
+        setTimeout(()=>{ canvas.style.pointerEvents = 'none'; }, 600);
+      }
+    }
+
+    function startDraw(e){
+      drawing = true;
+      const pos = getPos(e);
+      scratchAt(pos.x, pos.y);
+    }
+    function moveDraw(e){
+      if(!drawing) return;
+      e.preventDefault();
+      const pos = getPos(e);
+      scratchAt(pos.x, pos.y);
+      checkRevealProgress();
+    }
+    function endDraw(){
+      drawing = false;
+      checkRevealProgress();
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', moveDraw);
+    window.addEventListener('mouseup', endDraw);
+    canvas.addEventListener('touchstart', startDraw, {passive:true});
+    canvas.addEventListener('touchmove', moveDraw, {passive:false});
+    canvas.addEventListener('touchend', endDraw);
+
+    window.addEventListener('resize', sizeCanvas);
+    sizeCanvas();
+  });
+})();
+</script>
+
+</body>
+</html>
